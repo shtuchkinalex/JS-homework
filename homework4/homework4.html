@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="text.js"></script>
+    <title>Document</title>
+    <script>
+/*        function NumToObj(num)
+{
+    var arrNumber = num.split('');
+    while (arrNumber.length < 3)
+    {
+    	arrNumber.unshift(0);
+    }
+    var objNumber = {};
+    if (arrNumber.length > 3)
+    {
+    	return null;
+    }
+    else
+    {
+    	objNumber['сотни'] = +arrNumber[0]; 
+    	objNumber['десятки'] = +arrNumber[1]; 
+    	objNumber['единицы'] = +arrNumber[2];
+        return objNumber;
+    }
+}
+var number = prompt("Input number");
+var obj = NumToObj(number);
+if (obj == null)
+{
+	console.log("Object is null");
+}
+else
+{
+	alert (obj);
+}*/                                             //Первое задание
+
+
+
+
+
+function quest() {
+    var event, 
+        ok, 
+        current, 
+        gaming = true, 
+        step = 0, 
+        endLog=''; 
+
+
+    current = works[0];
+
+    function writeLog(gameStep, userEvent) {
+        var currentStep = works[gameStep];
+        currentStep.log = current.answer[userEvent];
+    }
+
+    function readLog() {
+        var logResult = '';
+        for (var i=0; i<step; i++) {
+            var st = i+1;
+            var currentStep =  works[i];
+            logResult += ('Шаг: ' + st + ', ваш выбор: ' + currentStep.log );
+        }
+        return logResult;
+    }
+
+
+    while (gaming) {
+        var count = 0, answers = '';
+
+       
+        for (var key in current.answer) {
+            answers += current.answer[key];
+            count++;
+        }
+        if (count === 0) {
+            alert(current.text+ '\n Статистика вашей игры: Вы сделали ' + step + ' шагов. \n' + readLog());
+            gaming = false;
+            break;
+        }
+
+        do {
+            ok = false;
+            event = parseInt(prompt(current.text + answers + '-1 - Выход из игры и вывод лога игры \n' + 'В игре вы сделали ' + step + ' шагов'));
+
+            if (event === -1) {
+
+                alert('Спасибо за игру! \n Статистика вашей игры: Вы сделали ' + step + ' шагов. \n' + readLog());
+                gaming = false;
+                break;
+            } else {
+                ok = isAnswer(count, event);
+            }
+        } while (!ok);
+
+
+        writeLog(step, event);
+        step += 1;
+        current = works[current.jump[event]];
+    }
+
+
+    function isAnswer(q, event) {
+        if (isNaN(event) || !isFinite(event)) {
+            alert('Введен недопустимый символ.');
+            return false;
+        } else if (event < 1 || event > q) {
+            alert('Ваше число выходит из диапазона.');
+            return false;
+        }
+        return true;
+    }
+}
+
+//Конец второго задания
+
+    </script>
+</head>
+<body>
+            <button onclick="quest()">Запустить игру</button>
+</body>
+</html>
